@@ -1,12 +1,13 @@
-import {Card, Flex, Space, Tabs, Typography} from 'react-vant'
+import {Card, Flex, Tabs, Typography} from 'react-vant'
+
 const {Item} = Flex
-const {Title, Text} = Typography
+const {Title} = Typography
 
 function TeamRank() {
   return (
     <div style={{padding: '10px'}}>
       <Card round style={{marginBottom: '10px'}}>
-        <Card.Header border>球队积分榜</Card.Header>
+        <Card.Header border>积分榜</Card.Header>
         <Card.Body>
           <Flex align='center' justify='center'>
             <Item span={4}>
@@ -84,7 +85,7 @@ function PlayerRank() {
   return (
     <div style={{padding: '10px'}}>
       <Card round style={{marginBottom: '10px'}}>
-        <Card.Header border>个人得分榜</Card.Header>
+        <Card.Header border>得分榜</Card.Header>
         <Card.Body>
           <Flex align='center' justify='center'>
             <Item span={8}>

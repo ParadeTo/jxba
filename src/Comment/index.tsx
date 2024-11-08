@@ -3,13 +3,14 @@ import {getComments} from '../data'
 import {useContext} from 'react'
 import {sessionContext} from '../context'
 import {Typography} from 'react-vant'
-const {Title, Text, Link} = Typography
+const {Title, Text} = Typography
 
 export function Comment() {
-  const params = useParams()
+  const params = useParams<{id: string}>()
   const sessionId = useContext(sessionContext)
   const comments = getComments(sessionId)!
-  const comment = comments[params.id]!
+  // @ts-expect-error ignore
+  const comment = comments[params.id] || {}
   return (
     <div style={{padding: '10px'}}>
       <Title level={5}>{comment.title}</Title>

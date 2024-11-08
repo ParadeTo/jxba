@@ -1,17 +1,39 @@
 import {useNavigate} from 'react-router-dom'
-import {Card, Flex, Typography} from 'react-vant'
-import {getGames} from '../data'
+import {Card, Flex, Search, Typography} from 'react-vant'
 import {useGames} from '../hooks'
 import {formatDate} from '../utils'
+import {useMemo, useState} from 'react'
+
 const {Item} = Flex
-const {Title, Text, Link} = Typography
+const {Text, Link} = Typography
+
 export function Games() {
+  const [keyword, setKeyword] = useState('')
   const navigate = useNavigate()
   const games = useGames()
-  const sortedGames = games?.sort((a, b) => b.time - a.time)
+  const resolvedGames = useMemo(() => {
+    return games
+      ?.filter((g) => {
+        if (
+          !keyword ||
+          g.guest.indexOf(keyword) > -1 ||
+          g.host.indexOf(keyword) > -1
+        )
+          return true
+        return false
+      })
+      ?.sort((a, b) => b.time - a.time)
+  }, [games, keyword])
   return (
     <div style={{padding: '10px'}}>
-      {sortedGames?.map((game) => {
+      <Search
+        style={{marginBottom: '10px'}}
+        value={keyword}
+        onChange={setKeyword}
+        clearable
+        placeholder='请输入球队'
+      />
+      {resolvedGames?.map((game) => {
         const isHostWin = game.hostScore > game.guestScore
         return (
           <Card round style={{marginBottom: '10px'}}>

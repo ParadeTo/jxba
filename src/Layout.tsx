@@ -1,18 +1,8 @@
-import {ActionBar, DropdownMenu, Flex, NavBar, Tabbar, Toast} from 'react-vant'
-import {
-  CartO,
-  ChatO,
-  FriendsO,
-  HomeO,
-  ManagerO,
-  MedalO,
-  NotesO,
-  Search,
-  ShopO,
-} from '@react-vant/icons'
-import {Link, Outlet, useNavigate} from 'react-router-dom'
-import {currentSession, currentSessionId, sessions} from './data'
-import {createContext, useState} from 'react'
+import {DropdownMenu, NavBar, Tabbar} from 'react-vant'
+import {MedalO, NotesO} from '@react-vant/icons'
+import {Link, useNavigate, Outlet} from 'react-router-dom'
+import {currentSessionId, sessions} from './data'
+import {useState} from 'react'
 import {sessionContext} from './context'
 
 export function Layout() {
@@ -26,6 +16,7 @@ export function Layout() {
         title='JXBA'
         leftArrow={false}
         rightText={
+          // @ts-expect-error ignore
           <DropdownMenu value={value} onChange={(v) => setValue(v)}>
             <DropdownMenu.Item
               name='session'

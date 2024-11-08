@@ -1,7 +1,5 @@
 import {games as games2} from './2/games'
 import {comments as comments2} from './2/comments'
-import {useContext} from 'react'
-import {sessionContext} from '../context'
 
 export const sessions = [
   {
